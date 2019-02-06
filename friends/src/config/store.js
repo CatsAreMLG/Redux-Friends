@@ -8,6 +8,6 @@ const rootReducer = combineReducers({
   friendsReducer
 });
 
-const store = createStore(rootReducer, thunk, logger);
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 export default store;

@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import { connect } from "react-redux";
+
+import { fetchFriends } from "./actions";
+
 import FriendsList from "./components/FriendsList";
 import CreateFriendForm from "./components/CreateFriendForm";
 import UpdateFriendForm from "./components/UpdateFriendForm";
 import "./App.css";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       friends: [],
       id: null,
@@ -16,9 +20,7 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    axios.get("http://localhost:5000/api/friends").then(res => {
-      this.setState({ friends: res.data });
-    });
+    this.props.fetchFriends();
   }
   addFriend = friend => {
     axios.post("http://localhost:5000/api/friends", friend).then(res => {
@@ -54,15 +56,29 @@ class App extends Component {
             <UpdateFriendForm updateFriend={this.updateFriend} />
           </>
         )}
-        <FriendsList
-          deleteFriend={this.deleteFriend}
-          setId={this.setId}
-          friends={this.state.friends}
-          id={this.state.id}
-        />
+        {this.props.friends.length > 0 ? (
+          <FriendsList
+            deleteFriend={this.deleteFriend}
+            setId={this.setId}
+            friends={this.props.friends}
+            id={this.state.id}
+          />
+        ) : (
+          <div>LOADING...</div>
+        )}
       </div>
     );
   }
 }
 
-export default App;
+const mstp = state => {
+  console.log(state);
+  return {
+    friends: state.friendsReducer.friends
+  };
+};
+
+export default connect(
+  mstp,
+  { fetchFriends }
+)(App);
