@@ -1,5 +1,9 @@
 import React from "react";
 
+import { connect } from "react-redux";
+
+import { deleteFriend } from "../actions";
+
 const Friends = props => {
   return (
     <div>
@@ -12,4 +16,7 @@ const Friends = props => {
   );
 };
 
-export default Friends;
+export default connect(
+  null,
+  { deleteFriend }
+)(Friends);

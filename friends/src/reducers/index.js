@@ -1,4 +1,4 @@
-import { ERROR, SUCCESS, LOADING } from "../actions";
+import { ERROR, SUCCESS, LOADING, DELETE } from "../actions";
 
 const initialState = {
   id: null,
@@ -12,6 +12,13 @@ export const friendsReducer = (state = initialState, action) => {
     case LOADING:
       return { ...state, fetchingFriends: true, friends: [] };
     case SUCCESS:
+      return {
+        ...state,
+        fetchingFriends: false,
+        error: null,
+        friends: action.payload
+      };
+    case DELETE:
       return {
         ...state,
         fetchingFriends: false,
