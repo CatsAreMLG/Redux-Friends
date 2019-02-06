@@ -56,11 +56,10 @@ class App extends Component {
             <UpdateFriendForm updateFriend={this.updateFriend} />
           </>
         )}
-        {this.props.friends.length > 0 ? (
+        {!this.props.fetchingFriends ? (
           <FriendsList
             deleteFriend={this.deleteFriend}
             setId={this.setId}
-            friends={this.props.friends}
             id={this.state.id}
           />
         ) : (
@@ -72,9 +71,8 @@ class App extends Component {
 }
 
 const mstp = state => {
-  console.log(state);
   return {
-    friends: state.friendsReducer.friends
+    fetchingFriends: state.friendsReducer.fetchingFriends
   };
 };
 

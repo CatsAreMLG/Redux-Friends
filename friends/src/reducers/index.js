@@ -3,13 +3,6 @@ import { ERROR, SUCCESS, LOADING } from "../actions";
 const initialState = {
   id: null,
   fetchingFriends: false,
-  friendsFetched: false,
-  friendsSaved: false,
-  savingFriends: false,
-  updatingFriend: false,
-  friendUpdated: false,
-  deletingFriend: false,
-  friendDeleted: false,
   friends: [],
   error: null
 };
@@ -17,11 +10,21 @@ const initialState = {
 export const friendsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOADING:
-      return state;
+      return { ...state, fetchingFriends: true, friends: [] };
     case SUCCESS:
-      return { ...state, friends: action.payload };
+      return {
+        ...state,
+        fetchingFriends: false,
+        error: null,
+        friends: action.payload
+      };
     case ERROR:
-      return state;
+      return {
+        ...state,
+        fetchingFriends: false,
+        error: action.payload,
+        friends: []
+      };
     default:
       return state;
   }

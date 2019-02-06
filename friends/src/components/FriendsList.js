@@ -1,5 +1,6 @@
 import React from "react";
 import Friends from "./Friends";
+import { connect } from "react-redux";
 
 const FriendsList = props => {
   return (
@@ -18,4 +19,10 @@ const FriendsList = props => {
   );
 };
 
-export default FriendsList;
+const mstp = state => {
+  return {
+    friends: state.friendsReducer.friends
+  };
+};
+
+export default connect(mstp)(FriendsList);
