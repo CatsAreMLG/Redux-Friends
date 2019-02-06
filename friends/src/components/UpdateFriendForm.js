@@ -1,5 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
 
+import { editFriend } from "../actions";
 class UpdateFriendForm extends React.Component {
   constructor(props) {
     super(props);
@@ -8,9 +10,14 @@ class UpdateFriendForm extends React.Component {
   inputHandler = e => {
     this.setState({ [e.target.dataset.name]: e.target.value });
   };
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.editFriend(this.state);
+    this.setState({ name: "", email: "", age: "" });
+  };
   render() {
     return (
-      <form onSubmit={_ => this.props.updateFriend(this.state)}>
+      <form onSubmit={this.handleSubmit}>
         <input
           onChange={e => this.inputHandler(e)}
           type="text"
@@ -38,4 +45,7 @@ class UpdateFriendForm extends React.Component {
   }
 }
 
-export default UpdateFriendForm;
+export default connect(
+  null,
+  { editFriend }
+)(UpdateFriendForm);

@@ -48,7 +48,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {!this.state.update ? (
+        {!this.props.editingFriend ? (
           <CreateFriendForm addFriend={this.addFriend} />
         ) : (
           <>
@@ -72,7 +72,8 @@ class App extends Component {
 
 const mstp = state => {
   return {
-    fetchingFriends: state.friendsReducer.fetchingFriends
+    fetchingFriends: state.friendsReducer.fetchingFriends,
+    editingFriend: state.friendsReducer.editingFriend
   };
 };
 

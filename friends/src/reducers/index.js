@@ -1,10 +1,11 @@
-import { ERROR, SUCCESS, LOADING, DELETE } from "../actions";
+import { ERROR, SUCCESS, LOADING, DELETE, EDITING } from "../actions";
 
 const initialState = {
   id: null,
   fetchingFriends: false,
   friends: [],
-  error: null
+  error: null,
+  editingFriend: false
 };
 
 export const friendsReducer = (state = initialState, action) => {
@@ -31,6 +32,12 @@ export const friendsReducer = (state = initialState, action) => {
         fetchingFriends: false,
         error: action.payload,
         friends: []
+      };
+    case EDITING:
+      return {
+        ...state,
+        editingFriend: true,
+        id: action.payload
       };
     default:
       return state;
