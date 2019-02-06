@@ -38,6 +38,11 @@ class App extends Component {
         this.setState({ friends: res.data, update: false });
       });
   };
+  deleteFriend = id => {
+    axios.delete(`http://localhost:5000/api/friends/${id}`).then(res => {
+      this.setState({ friends: res.data });
+    });
+  };
   render() {
     return (
       <div className="App">
@@ -50,6 +55,7 @@ class App extends Component {
           </>
         )}
         <FriendsList
+          deleteFriend={this.deleteFriend}
           setId={this.setId}
           friends={this.state.friends}
           id={this.state.id}
