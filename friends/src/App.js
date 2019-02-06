@@ -10,7 +10,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      id: null,
+      update: false
     };
   }
   componentDidMount() {
@@ -23,11 +25,35 @@ class App extends Component {
       this.setState({ friends: res.data });
     });
   };
+  setId = id => {
+    this.setState({
+      id,
+      update: true
+    });
+  };
+  updateFriend = friend => {
+    axios
+      .put(`http://localhost:5000/api/friends/${this.state.id}`, friend)
+      .then(res => {
+        this.setState({ friends: res.data, update: false });
+      });
+  };
   render() {
     return (
       <div className="App">
-        <CreateFriendForm addFriend={this.addFriend} />
-        <FriendsList friends={this.state.friends} />
+        {!this.state.update ? (
+          <CreateFriendForm addFriend={this.addFriend} />
+        ) : (
+          <>
+            <h1>Edit</h1>
+            <UpdateFriendForm updateFriend={this.updateFriend} />
+          </>
+        )}
+        <FriendsList
+          setId={this.setId}
+          friends={this.state.friends}
+          id={this.state.id}
+        />
       </div>
     );
   }
