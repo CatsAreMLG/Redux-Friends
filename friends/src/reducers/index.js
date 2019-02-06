@@ -37,7 +37,7 @@ export const friendsReducer = (state = initialState, action) => {
     case EDITING:
       return {
         ...state,
-        editingFriend: true,
+        editingFriend: !state.editingFriend,
         id: action.payload
       };
     default:
