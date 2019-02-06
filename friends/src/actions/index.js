@@ -51,6 +51,20 @@ export const editFriend = friend => dispatch => {
       });
     });
 };
+export const addFriend = friend => dispatch => {
+  dispatch({ type: LOADING });
+  axios
+    .post(`http://localhost:5000/api/friends/`, friend)
+    .then(res => {
+      dispatch({ type: SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: ERROR,
+        payload: "Error 404: Cannot add friend"
+      });
+    });
+};
 export const editingFriend = id => dispatch => {
   dispatch({ type: EDITING, payload: id });
 };

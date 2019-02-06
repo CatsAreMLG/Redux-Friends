@@ -8,7 +8,7 @@ class UpdateFriendForm extends React.Component {
     this.state = { name: "", email: "", age: "" };
   }
   inputHandler = e => {
-    this.setState({ [e.target.dataset.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -19,24 +19,24 @@ class UpdateFriendForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <input
-          onChange={e => this.inputHandler(e)}
+          onChange={this.inputHandler}
           type="text"
           placeholder="Name..."
-          data-name="name"
+          name="name"
           value={this.state.name}
         />
         <input
-          onChange={e => this.inputHandler(e)}
+          onChange={this.inputHandler}
           type="number"
           placeholder="Age..."
-          data-name="age"
+          name="age"
           value={this.state.age}
         />
         <input
-          onChange={e => this.inputHandler(e)}
+          onChange={this.inputHandler}
           type="email"
           placeholder="Email..."
-          data-name="email"
+          name="email"
           value={this.state.email}
         />
         <button>Submit</button>
