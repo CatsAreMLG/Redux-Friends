@@ -34,7 +34,7 @@
   border: 1px solid #ccc;
   margin: 0.25rem;
   margin-top: 0.75rem;
-
+  background: rgba(41, 41, 49, 0.753);
 }
 
 .delete {
