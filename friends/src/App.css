@@ -43,6 +43,10 @@
 
 form {
   margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 input,
@@ -55,4 +59,21 @@ button {
 
 button {
   cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  form {
+    margin: 1rem 10%;
+    flex-direction: column;
+  }
+
+  input {
+    margin: .5rem 0;
+    width: 75%;
+  }
+
+  button {
+    margin: .5rem 0;
+    width: 10rem;
+  }
 }
