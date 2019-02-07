@@ -48,6 +48,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1>Redux Friends List</h1>
         {!this.props.editingFriend ? (
           <CreateFriendForm addFriend={this.addFriend} />
         ) : (

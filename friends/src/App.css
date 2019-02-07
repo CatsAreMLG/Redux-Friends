@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: white;
 }
 
 .item_container {
@@ -11,13 +12,14 @@
 }
 
 .item {
+  background: rgb(24, 24, 30);
   /* margin: 1rem auto; */
   padding: 1rem;
   /* width: 50%; */
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  border: 1px solid black;
+  border: 1px solid white;
 }
 
 .item_text {
@@ -31,6 +33,8 @@
   padding: .125rem .5rem .25rem;
   border: 1px solid #ccc;
   margin: 0.25rem;
+  margin-top: 0.75rem;
+
 }
 
 .delete {
@@ -53,11 +57,12 @@ input,
 button {
   padding: 0.25rem .5rem;
   margin: .5rem;
-  background: white;
+  background: rgb(24, 24, 30);
   border: 1px solid #ccc;
 }
 
 button {
+  color: white;
   cursor: pointer;
 }
 

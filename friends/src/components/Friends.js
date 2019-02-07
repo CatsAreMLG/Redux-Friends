@@ -6,8 +6,9 @@ import { deleteFriend, editingFriend } from "../actions";
 const Friends = props => {
   return (
     <div className="item">
-      <div className="item_text">{props.friend.name}</div>
-      <div className="item_text">{props.friend.age}</div>
+      <div className="item_text">
+        {props.friend.name}, {props.friend.age}
+      </div>
       <div className="item_text">{props.friend.email}</div>
       <div
         className="item_button edit"
