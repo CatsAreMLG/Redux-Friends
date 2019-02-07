@@ -1,11 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
+import axios from "axios";
+
+import store from "../config/store";
 
 import { editFriend } from "../actions";
 class UpdateFriendForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { name: "", email: "", age: "" };
+  }
+  componentDidMount() {
+    const id = store.getState().friendsReducer.id;
+    axios.get(`http://localhost:5000/api/friends/${id}`).then(res => {
+      this.setState({
+        name: res.data.name,
+        email: res.data.email,
+        age: res.data.age
+      });
+    });
   }
   inputHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
