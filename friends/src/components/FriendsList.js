@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 const FriendsList = props => {
   return (
-    <div>
+    <div className="item_container">
       {props.friends.map((friend, i) => {
         return <Friends key={`friends-${i}`} friend={friend} />;
       })}

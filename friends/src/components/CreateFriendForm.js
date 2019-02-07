@@ -25,6 +25,7 @@ class CreateFriendForm extends React.Component {
           placeholder="Name..."
           name="name"
           value={this.state.name}
+          required
         />
         <input
           onChange={this.inputHandler}
@@ -32,6 +33,7 @@ class CreateFriendForm extends React.Component {
           placeholder="Age..."
           name="age"
           value={this.state.age}
+          required
         />
         <input
           onChange={this.inputHandler}
@@ -39,6 +41,7 @@ class CreateFriendForm extends React.Component {
           placeholder="Email..."
           name="email"
           value={this.state.email}
+          required
         />
         <button>Submit</button>
       </form>
